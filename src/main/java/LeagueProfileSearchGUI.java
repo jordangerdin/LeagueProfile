@@ -1,6 +1,5 @@
 import Classes.League;
 import Classes.Mastery;
-import Classes.Masteries;
 import Classes.Summoner;
 import kong.unirest.Unirest;
 
@@ -47,17 +46,14 @@ public class LeagueProfileSearchGUI extends JFrame{
                 System.out.println(player);
 
                 // Get player rank
-                League playerRank = getPlayerRank(regionCode, player.getId());
-                System.out.println(playerRank);
+                League[] playerRank = getPlayerRank(regionCode, player.getId());
+                System.out.println(playerRank[0]);
 
                 // Get player mastery scores
-                Masteries response = getPlayerMasteries(regionCode, player.getId());
-
-                System.out.println(response);
-                Mastery[] masteries = response.masteries;
+                Mastery[] mastery = getPlayerMasteries(regionCode, player.getId());
 
                 for (int i = 0; i < 3; i++) {
-                    System.out.println("Mastery Score: " + masteries[i].championPoints + "Champion: " + masteries[i].championId);
+                    System.out.println("Mastery Score: " + mastery[i].championPoints + " Champion: " + mastery[i].championId);
                 }
 
                 // Get player Match History
@@ -130,25 +126,25 @@ public class LeagueProfileSearchGUI extends JFrame{
         return player;
     }
 
-    public League getPlayerRank(String regionCode, String summonerId){
+    public League[] getPlayerRank(String regionCode, String summonerId){
         String version = "v4";
 
         String urlLeague = "https://" + regionCode + ".api.riotgames.com/lol/league/" + version +
                 "/entries/by-summoner/" + summonerId + "?api_key=" + LeagueProfileAPI.RIOT_API_KEY;
-        League league = Unirest.get(urlLeague)
-                .asObject(League.class)
+        League[] league = Unirest.get(urlLeague)
+                .asObject(League[].class)
                 .getBody();
 
         return league;
     }
 
-    public Masteries getPlayerMasteries(String regionCode, String summonerId){
+    public Mastery[] getPlayerMasteries(String regionCode, String summonerId){
         String version = "v4";
 
         String urlMastery = "https://" + regionCode + ".api.riotgames.com/lol/champion-mastery/" + version +
                 "/champion-masteries/by-summoner/" + summonerId + "?api_key=" + LeagueProfileAPI.RIOT_API_KEY;
-        Masteries response = Unirest.get(urlMastery)
-                .asObject(Masteries.class)
+        Mastery[] response = Unirest.get(urlMastery)
+                .asObject(Mastery[].class)
                 .getBody();
 
         System.out.println(response);

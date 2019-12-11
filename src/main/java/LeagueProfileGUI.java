@@ -27,13 +27,13 @@ public class LeagueProfileGUI extends JFrame {
         sumName.setText(summoner.getName());
         sumLevel.setText("Lv: " + summoner.getSummonerLevel());
 
-        sumRank.setText("Iron");
+        sumRank.setText("Grandmaster");
 
         ImageIcon image = new ImageIcon(getClass().getResource(getRankImagePath()));
 
         sumRankImg.setIcon(new ImageIcon(image.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 
-        champMastery1Points.setText("118,149");
+        champMastery1Points.setText("108,930");
         //champMastery1Img.setIcon();
         champMastery2Points.setText("101,769");
         //champMastery2Img.setIcon();
