@@ -1,7 +1,14 @@
+import Classes.League;
+import Classes.Mastery;
+import Classes.MatchHistory;
 import Classes.Summoner;
+import kong.unirest.Unirest;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
 
 public class LeagueProfileGUI extends JFrame {
     private JLabel sumRankImg;
@@ -14,37 +21,64 @@ public class LeagueProfileGUI extends JFrame {
     private JLabel champMastery1Points;
     private JLabel champMastery2Points;
     private JLabel champMastery3Points;
-    private JList list1;
+    private JList matchHistory;
     private JPanel profilePanel;
 
-    public LeagueProfileGUI(Summoner summoner) {
+    DefaultListModel<String> listMatchModel;
+
+
+    public LeagueProfileGUI(Summoner summoner, League[] rank, Mastery[] mastery, MatchHistory.Match[] matches) {
         setContentPane(profilePanel);
         setPreferredSize(new Dimension(800, 1000));
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
+        // Set player name and level to profile
         sumName.setText(summoner.getName());
         sumLevel.setText("Lv: " + summoner.getSummonerLevel());
 
-        sumRank.setText("Iron");
+        // Set ranked info and images
+        String div = rank[0].getTier();
+        String division = div.substring(0,1).toUpperCase() + div.substring(1).toLowerCase();
 
-        ImageIcon image = new ImageIcon(getClass().getResource(getRankImagePath()));
+        sumRank.setText(division + " " + rank[0].getRank());
 
-        sumRankImg.setIcon(new ImageIcon(image.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
 
-        champMastery1Points.setText("118,149");
-        //champMastery1Img.setIcon();
-        champMastery2Points.setText("101,769");
-        //champMastery2Img.setIcon();
-        champMastery3Points.setText("99,171");
-        //champMastery3Img.setIcon();
+        ImageIcon image = new ImageIcon(getClass().getResource(getRankImagePath(division)));
+        sumRankImg.setIcon(new ImageIcon(image.getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT)));
+        sumRankImg.setText("");
 
+        // Set top 3 champion masteries to profile
+        champMastery1Points.setText(String.format("%,d", mastery[0].getChampionPoints()));
+        ImageIcon champ1Img = new ImageIcon(APIRequests.getChampionIcon(mastery[0].getChampionId()));
+        champMastery1Img.setText("");
+        champMastery1Img.setIcon(new ImageIcon(champ1Img.getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT)));
+
+        champMastery2Points.setText(String.format("%,d", mastery[1].getChampionPoints()));
+        ImageIcon champ2Img = new ImageIcon(APIRequests.getChampionIcon(mastery[1].getChampionId()));
+        champMastery2Img.setText("");
+        champMastery2Img.setIcon(new ImageIcon(champ2Img.getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT)));
+
+        champMastery3Points.setText(String.format("%,d", mastery[2].getChampionPoints()));
+        ImageIcon champ3Img = new ImageIcon(APIRequests.getChampionIcon(mastery[2].getChampionId()));
+        champMastery3Img.setText("");
+        champMastery3Img.setIcon(new ImageIcon(champ3Img.getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT)));
+
+
+        // Update Matchlist with recent match history
+        listMatchModel = new DefaultListModel<>();
+        for (MatchHistory.Match match : matches){
+            listMatchModel.addElement(String.valueOf(match.getGameId()));
+        }
+
+        matchHistory.setModel(listMatchModel);
+        matchHistory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
-    public String getRankImagePath() {
+    public String getRankImagePath(String division) {
         String image = "";
-        switch(sumRank.getText()){
+        switch(division){
             case("Iron"):
                 image = "ranked-emblems/Emblem_Iron.png";
                 break;
@@ -73,12 +107,6 @@ public class LeagueProfileGUI extends JFrame {
                 image = "ranked-emblems/Emblem_Challenger.png";
                 break;
         }
-        return image;
-    }
-
-    public String getChampionIcon(int champId) {
-        String image = "ddragon.leagueoflegends.com/cdn/9.24.1/img/champion/";
-
         return image;
     }
 }

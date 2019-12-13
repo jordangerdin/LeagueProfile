@@ -1,42 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="LeagueProfileGUI">
-  <grid id="27dc6" binding="profilePanel" layout-manager="GridLayoutManager" row-count="3" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="profilePanel" layout-manager="GridLayoutManager" row-count="3" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="685" height="400"/>
+      <xy x="20" y="20" width="1016" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
       <component id="fd506" class="javax.swing.JLabel" binding="sumRankImg">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="100" height="100"/>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <maximum-size width="120" height="120"/>
           </grid>
         </constraints>
         <properties>
           <text value="Rank Image"/>
         </properties>
       </component>
-      <component id="ccc5e" class="javax.swing.JLabel" binding="sumName">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="200" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <font size="16" style="1"/>
-          <text value="Classes.Summoner Name"/>
-        </properties>
-      </component>
       <scrollpane id="693d1">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="6e030" class="javax.swing.JList" binding="list1" default-binding="true">
+          <component id="6e030" class="javax.swing.JList" binding="matchHistory">
             <constraints/>
             <properties/>
           </component>
@@ -44,9 +33,7 @@
       </scrollpane>
       <component id="96aec" class="javax.swing.JLabel" binding="champMastery1Img">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="120" height="120"/>
-          </grid>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Champ1MasteryImage"/>
@@ -54,9 +41,7 @@
       </component>
       <component id="17d40" class="javax.swing.JLabel" binding="champMastery2Img">
         <constraints>
-          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="120" height="120"/>
-          </grid>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Champ2MasteryImage"/>
@@ -64,9 +49,7 @@
       </component>
       <component id="e309a" class="javax.swing.JLabel" binding="champMastery3Img">
         <constraints>
-          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <maximum-size width="120" height="120"/>
-          </grid>
+          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Champ3MasteryImage"/>
@@ -74,25 +57,15 @@
       </component>
       <component id="6b8" class="javax.swing.JLabel" binding="champMastery1Points">
         <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Champ1MasteryPoints"/>
         </properties>
       </component>
-      <component id="28de6" class="javax.swing.JLabel" binding="sumLevel">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false">
-            <maximum-size width="200" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Classes.Summoner Level"/>
-        </properties>
-      </component>
       <component id="ec7f5" class="javax.swing.JLabel" binding="sumRank">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="RankText"/>
@@ -100,7 +73,7 @@
       </component>
       <component id="d3260" class="javax.swing.JLabel" binding="champMastery2Points">
         <constraints>
-          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Champ2MasteryPoints"/>
@@ -108,10 +81,27 @@
       </component>
       <component id="83e37" class="javax.swing.JLabel" binding="champMastery3Points">
         <constraints>
-          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Champ3MasteryPoints"/>
+        </properties>
+      </component>
+      <component id="ccc5e" class="javax.swing.JLabel" binding="sumName">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="16" style="1"/>
+          <text value="Classes.Summoner Name"/>
+        </properties>
+      </component>
+      <component id="28de6" class="javax.swing.JLabel" binding="sumLevel">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="2" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Classes.Summoner Level"/>
         </properties>
       </component>
     </children>
