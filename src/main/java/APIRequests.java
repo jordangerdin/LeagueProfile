@@ -107,7 +107,7 @@ public class APIRequests {
                 .asObject(MatchStats.class)
                 .getBody();
 
-        System.out.println(response);
+        System.out.println(response.getGameId());
         return response;
     }
 
