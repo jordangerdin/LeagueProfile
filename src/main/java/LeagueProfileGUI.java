@@ -1,12 +1,13 @@
-import Classes.League;
-import Classes.Mastery;
-import Classes.MatchHistory;
-import Classes.Summoner;
+import Classes.*;
 import kong.unirest.Unirest;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URL;
 
@@ -23,27 +24,32 @@ public class LeagueProfileGUI extends JFrame {
     private JLabel champMastery3Points;
     private JList matchHistory;
     private JPanel profilePanel;
+    private JButton newSearch;
+    private JLabel sumRegion;
 
     DefaultListModel<String> listMatchModel;
 
 
     public LeagueProfileGUI(Summoner summoner, League[] rank, Mastery[] mastery, MatchHistory.Match[] matches) {
         setContentPane(profilePanel);
-        setPreferredSize(new Dimension(800, 1000));
+        setPreferredSize(new Dimension(800, 600));
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
+
+
         // Set player name and level to profile
         sumName.setText(summoner.getName());
         sumLevel.setText("Lv: " + summoner.getSummonerLevel());
+        sumRegion.setText(summoner.getRegion());
 
         // Set ranked info and images
+
         String div = rank[0].getTier();
         String division = div.substring(0,1).toUpperCase() + div.substring(1).toLowerCase();
 
         sumRank.setText(division + " " + rank[0].getRank());
-
 
         ImageIcon image = new ImageIcon(getClass().getResource(getRankImagePath(division)));
         sumRankImg.setIcon(new ImageIcon(image.getImage().getScaledInstance(120, 120, Image.SCALE_DEFAULT)));
@@ -69,11 +75,13 @@ public class LeagueProfileGUI extends JFrame {
         // Update Matchlist with recent match history
         listMatchModel = new DefaultListModel<>();
         for (MatchHistory.Match match : matches){
-            listMatchModel.addElement(String.valueOf(match.getGameId()));
+            listMatchModel.addElement(String.valueOf(match.getGameId() + "   " + APIRequests.getChampionNameById(match.getChampion())));
         }
 
         matchHistory.setModel(listMatchModel);
         matchHistory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        addListeners();
     }
 
     public String getRankImagePath(String division) {
@@ -108,5 +116,80 @@ public class LeagueProfileGUI extends JFrame {
                 break;
         }
         return image;
+    }
+
+    private void addListeners() {
+        JPopupMenu rightClickMenu = new JPopupMenu();
+        JMenuItem matchDetails = new JMenuItem("Match Details");
+        rightClickMenu.add(matchDetails);
+
+        newSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                LeagueProfileSearchGUI gui = new LeagueProfileSearchGUI();
+                setVisible(false);
+            }
+        });
+
+        matchDetails.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getMatchDetails();
+            }
+        });
+
+        matchHistory.setComponentPopupMenu(rightClickMenu);
+
+        matchHistory.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    int selection = matchHistory.locationToIndex(e.getPoint());
+                    matchHistory.setSelectedIndex(selection);
+                }
+            }
+
+            // Right clicks are on press for windows, release for macs
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e) ){
+                    int selection = matchHistory.locationToIndex(e.getPoint());
+                    matchHistory.setSelectedIndex(selection);
+                }
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    int selection = matchHistory.locationToIndex(e.getPoint());
+                    matchHistory.setSelectedIndex(selection);
+                }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+    }
+
+    public void getMatchDetails(){
+        int selectedIndex = matchHistory.getSelectedIndex();
+
+        // Get gameID from list of matches
+        String gameId = listMatchModel.getElementAt(selectedIndex);
+        String[] gameIdMod = gameId.split(" ");
+        gameId = gameIdMod[0];
+
+        // Get region
+        String region = sumRegion.getText();
+
+        // Send API request for match data
+        if (selectedIndex == -1) {
+        } else {
+            // Open up Match Detail GUI for gameID
+            MatchStats match = APIRequests.getPlayerMatchData(region, gameId);
+
+            MatchDetailsGUI gui = new MatchDetailsGUI(match);
+
+        }
     }
 }

@@ -7,6 +7,7 @@ public class Summoner {
     public String id;
     public String accountId;
     public String summonerLevel;
+    public String region;
 
     public Summoner() {
         // Empty constructor
@@ -52,6 +53,14 @@ public class Summoner {
         this.summonerLevel = summonerLevel;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
     @Override
     public String toString() {
         return "Classes.Summoner{" +
@@ -61,4 +70,6 @@ public class Summoner {
                 ", summonerLevel='" + summonerLevel + '\'' +
                 '}';
     }
+
+
 }

@@ -44,9 +44,12 @@ public class LeagueProfileSearchGUI extends JFrame{
                 String region = sumRegionList.getSelectedItem().toString();
                 String regionCode = APIRequests.getRegionCode(region);
                 String summoner = sumNameText.getText();
+                summoner = summoner.trim();
+                summoner = summoner.replace(" ", "_");
 
                 // Get player ID and associated data
                 Summoner player = APIRequests.getPlayerData(regionCode, summoner);
+                player.setRegion(regionCode);
 
                 // Get player rank
                 League[] playerRank = APIRequests.getPlayerRank(regionCode, player.getId());
