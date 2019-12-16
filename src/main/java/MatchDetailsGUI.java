@@ -33,7 +33,6 @@ public class MatchDetailsGUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-        System.out.println();
     }
 
 }

@@ -1,6 +1,8 @@
 package Classes;
 
 public class Mastery {
+    // Class for a Champion Mastery
+
     public long championId;
     public int championLevel;
     public int championPoints;
@@ -10,19 +12,6 @@ public class Mastery {
     public boolean chestGranted;
     public int tokensEarned;
     public String summonerId;
-
-
-
-
-    public Mastery() {
-        // Empty constructor
-    }
-
-    public Mastery(int championLevel, int championPoints, long championId) {
-        this.championLevel = championLevel;
-        this.championPoints = championPoints;
-        this.championId = championId;
-    }
 
     public int getChampionLevel() {
         return championLevel;

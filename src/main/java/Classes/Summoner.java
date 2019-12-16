@@ -9,17 +9,6 @@ public class Summoner {
     public String summonerLevel;
     public String region;
 
-    public Summoner() {
-        // Empty constructor
-    }
-
-    public Summoner(String name, String id, String accountId, String summonerLevel) {
-        this.name = name;
-        this.id = id;
-        this.accountId = accountId;
-        this.summonerLevel = summonerLevel;
-    }
-
 
     public String getName() {
         return name;

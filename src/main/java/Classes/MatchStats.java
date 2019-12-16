@@ -1,9 +1,10 @@
 package Classes;
 
-import java.util.List;
 import java.util.Map;
 
 public class MatchStats {
+    // Information for a single match
+
     int gameId;
     String platformId;
     long gameCreation;
@@ -121,7 +122,6 @@ public class MatchStats {
     public void setParticipantIdentities(ParticipantIdentities[] participantIdentities) {
         this.participantIdentities = participantIdentities;
     }
-
 
     public class Teams {
         int teamId;

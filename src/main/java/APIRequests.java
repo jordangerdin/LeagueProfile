@@ -1,5 +1,6 @@
 import Classes.*;
 import kong.unirest.Unirest;
+import kong.unirest.UnirestParsingException;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -92,6 +93,9 @@ public class APIRequests {
 
         MatchHistory response = Unirest.get(urlMatch)
                 .asObject(MatchHistory.class)
+                .ifFailure(Error.class, r -> {
+                    Error e = r.getBody();
+                })
                 .getBody();
 
         return response;
@@ -100,14 +104,16 @@ public class APIRequests {
     public static MatchStats getPlayerMatchData(String regionCode, String matchId){
         String version = "v4";
 
-        String urlMatch = "https://" + regionCode + ".api.riotgames.com/lol/match/" + version +
+        String urlMatchDetails = "https://" + regionCode + ".api.riotgames.com/lol/match/" + version +
                 "/matches/" + matchId + "?api_key=" + LeagueProfileAPI.RIOT_API_KEY;
 
-        MatchStats response = Unirest.get(urlMatch)
+        MatchStats response = Unirest.get(urlMatchDetails)
                 .asObject(MatchStats.class)
+                .ifFailure(Error.class, r -> {
+                    Error e = r.getBody();
+                })
                 .getBody();
 
-        System.out.println(response.getGameId());
         return response;
     }
 
@@ -119,7 +125,6 @@ public class APIRequests {
         // https://www.mkyong.com/java/how-to-read-an-image-from-file-or-url/
         try {
             URL url = new URL("http://ddragon.leagueoflegends.com/cdn/9.24.2/img/champion/" + champName + ".png");
-            //System.out.println(url);
             Image image = ImageIO.read(url);
             return image;
         } catch (IOException e) {

@@ -1,7 +1,7 @@
 package Classes;
 
 public class MatchHistory {
-    // Class for a matchlist
+    // Class for a match history
 
     Match[] matches;
     int totalGames;
