@@ -27,7 +27,9 @@
         <children>
           <component id="6e030" class="javax.swing.JList" binding="matchHistory">
             <constraints/>
-            <properties/>
+            <properties>
+              <font name="Consolas"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

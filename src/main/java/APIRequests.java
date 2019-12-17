@@ -3,9 +3,11 @@ import kong.unirest.Unirest;
 import kong.unirest.UnirestParsingException;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLOutput;
 
 public class APIRequests {
 
@@ -56,6 +58,9 @@ public class APIRequests {
                 "/summoners/by-name/" + summoner + "?api_key=" + LeagueProfileAPI.RIOT_API_KEY;
         Summoner player = Unirest.get(urlSummoner)
                 .asObject(Summoner.class)
+                .ifFailure(Error.class, r -> {
+                    Error e = r.getBody();
+                })
                 .getBody();
         return player;
     }
@@ -110,7 +115,7 @@ public class APIRequests {
         MatchStats response = Unirest.get(urlMatchDetails)
                 .asObject(MatchStats.class)
                 .ifFailure(Error.class, r -> {
-                    Error e = r.getBody();
+                        Error e = r.getBody();
                 })
                 .getBody();
 
@@ -584,5 +589,23 @@ public class APIRequests {
         }
 
         return name;
+    }
+
+    public static String getGameType(Integer queueId) {
+        String gamemode = "";
+
+        if (queueId.equals(400)){
+            gamemode = "Summoner's Rift: Normals";
+        } else if (queueId.equals(420)){
+            gamemode = "Summoner's Rift: Ranked";
+        } else if (queueId.equals(450)){
+            gamemode = "ARAM";
+        } else if (queueId.equals(700)){
+            gamemode = "Clash";
+        } else {
+            gamemode = "Featured Game";
+        }
+
+        return gamemode;
     }
 }

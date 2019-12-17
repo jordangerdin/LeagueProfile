@@ -75,7 +75,9 @@ public class LeagueProfileGUI extends JFrame {
         // Update Matchlist with recent match history
         listMatchModel = new DefaultListModel<>();
         for (MatchHistory.Match match : matches){
-            listMatchModel.addElement(String.valueOf(match.getGameId() + "   " + APIRequests.getChampionNameById(match.getChampion())));
+            String listMatchDetails = String.format("%-15s %-15s %-25s", String.valueOf
+                    (match.getGameId()), APIRequests.getChampionNameById(match.getChampion()), APIRequests.getGameType(match.getQueue()));
+            listMatchModel.addElement(listMatchDetails);
         }
 
         matchHistory.setModel(listMatchModel);

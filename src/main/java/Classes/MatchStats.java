@@ -5,7 +5,7 @@ import java.util.Map;
 public class MatchStats {
     // Information for a single match
 
-    int gameId;
+    long gameId;
     String platformId;
     long gameCreation;
     long gameDuration;
@@ -19,7 +19,11 @@ public class MatchStats {
     Participants[] participants;
     ParticipantIdentities[] participantIdentities;
 
-    public int getGameId() {
+    MatchStats() {
+        // Empty Constructor
+    }
+
+    public long getGameId() {
         return gameId;
     }
 
@@ -270,8 +274,8 @@ public class MatchStats {
         }
 
         public class Bans {
-            int pickTurn;
-            int championId;
+                int pickTurn;
+                int championId;
 
             public int getPickTurn() {
                 return pickTurn;
