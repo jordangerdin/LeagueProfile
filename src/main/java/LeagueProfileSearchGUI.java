@@ -2,14 +2,11 @@ import Classes.League;
 import Classes.Mastery;
 import Classes.MatchHistory;
 import Classes.Summoner;
-import javafx.css.Match;
-import kong.unirest.Unirest;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class LeagueProfileSearchGUI extends JFrame{
     private JTextField sumNameText;
@@ -40,6 +37,7 @@ public class LeagueProfileSearchGUI extends JFrame{
                 // generate API requests using region selected and summoner name, load profile GUI
 
                 // Use summoner name to get encrypted account ID using Summoner-v4
+
                 // encrypted Summoner ID (by summoner name + region)
                     // Rank (League-V4,  using encrypted account id)
                     // highest champion mastery (Mastery-V4, using encrypted account id)

@@ -47,7 +47,7 @@ public class MatchDetailsGUI extends JFrame {
 
     public MatchDetailsGUI(MatchStats matchStats) {
         setContentPane(matchPanel);
-        setPreferredSize(new Dimension(500, 400));
+        setPreferredSize(new Dimension(500, 375));
         pack();
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         setVisible(true);
@@ -58,7 +58,7 @@ public class MatchDetailsGUI extends JFrame {
 
         // Header information such as gametype, duration
         gameMode.setText(APIRequests.getGameType(matchStats.getQueueId()));
-        duration.setText(String.valueOf((new SimpleDateFormat("mm:ss")).format(new Date(matchStats.getGameDuration()*1000))));
+        duration.setText((new SimpleDateFormat("mm:ss")).format(new Date(matchStats.getGameDuration() * 1000)));
 
         // Flair for winning team
         if(teams[0].getWin().equals("Win")){
@@ -103,37 +103,37 @@ public class MatchDetailsGUI extends JFrame {
         sum9.setIcon(new ImageIcon(champ9Img.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 
         // Set player KDA stats
-        sum0kda.setText(String.valueOf(playerStats[0].getStats().getKills() + "/" + playerStats[0].getStats().getDeaths() + "/" + playerStats[0].getStats().getAssists()));
-        sum1kda.setText(String.valueOf(playerStats[1].getStats().getKills() + "/" + playerStats[1].getStats().getDeaths() + "/" + playerStats[1].getStats().getAssists()));
-        sum2kda.setText(String.valueOf(playerStats[2].getStats().getKills() + "/" + playerStats[2].getStats().getDeaths() + "/" + playerStats[2].getStats().getAssists()));
-        sum3kda.setText(String.valueOf(playerStats[3].getStats().getKills() + "/" + playerStats[3].getStats().getDeaths() + "/" + playerStats[3].getStats().getAssists()));
-        sum4kda.setText(String.valueOf(playerStats[4].getStats().getKills() + "/" + playerStats[4].getStats().getDeaths() + "/" + playerStats[4].getStats().getAssists()));
-        sum5kda.setText(String.valueOf(playerStats[5].getStats().getKills() + "/" + playerStats[5].getStats().getDeaths() + "/" + playerStats[5].getStats().getAssists()));
-        sum6kda.setText(String.valueOf(playerStats[6].getStats().getKills() + "/" + playerStats[6].getStats().getDeaths() + "/" + playerStats[6].getStats().getAssists()));
-        sum7kda.setText(String.valueOf(playerStats[7].getStats().getKills() + "/" + playerStats[7].getStats().getDeaths() + "/" + playerStats[7].getStats().getAssists()));
-        sum8kda.setText(String.valueOf(playerStats[8].getStats().getKills() + "/" + playerStats[8].getStats().getDeaths() + "/" + playerStats[8].getStats().getAssists()));
-        sum9kda.setText(String.valueOf(playerStats[9].getStats().getKills() + "/" + playerStats[9].getStats().getDeaths() + "/" + playerStats[9].getStats().getAssists()));
+        sum0kda.setText(playerStats[0].getStats().getKills() + "/" + playerStats[0].getStats().getDeaths() + "/" + playerStats[0].getStats().getAssists());
+        sum1kda.setText(playerStats[1].getStats().getKills() + "/" + playerStats[1].getStats().getDeaths() + "/" + playerStats[1].getStats().getAssists());
+        sum2kda.setText(playerStats[2].getStats().getKills() + "/" + playerStats[2].getStats().getDeaths() + "/" + playerStats[2].getStats().getAssists());
+        sum3kda.setText(playerStats[3].getStats().getKills() + "/" + playerStats[3].getStats().getDeaths() + "/" + playerStats[3].getStats().getAssists());
+        sum4kda.setText(playerStats[4].getStats().getKills() + "/" + playerStats[4].getStats().getDeaths() + "/" + playerStats[4].getStats().getAssists());
+        sum5kda.setText(playerStats[5].getStats().getKills() + "/" + playerStats[5].getStats().getDeaths() + "/" + playerStats[5].getStats().getAssists());
+        sum6kda.setText(playerStats[6].getStats().getKills() + "/" + playerStats[6].getStats().getDeaths() + "/" + playerStats[6].getStats().getAssists());
+        sum7kda.setText(playerStats[7].getStats().getKills() + "/" + playerStats[7].getStats().getDeaths() + "/" + playerStats[7].getStats().getAssists());
+        sum8kda.setText((playerStats[8].getStats().getKills() + "/" + playerStats[8].getStats().getDeaths() + "/" + playerStats[8].getStats().getAssists()));
+        sum9kda.setText((playerStats[9].getStats().getKills() + "/" + playerStats[9].getStats().getDeaths() + "/" + playerStats[9].getStats().getAssists()));
 
         // Set CS scores
-        sum0cs.setText("CS: " + String.valueOf(playerStats[0].getStats().getTotalMinionsKilled() +
+        sum0cs.setText("CS: " + (playerStats[0].getStats().getTotalMinionsKilled() +
                 playerStats[0].getStats().getNeutralMinionsKilled()));
-        sum1cs.setText("CS: " + String.valueOf(playerStats[1].getStats().getTotalMinionsKilled() +
+        sum1cs.setText("CS: " + (playerStats[1].getStats().getTotalMinionsKilled() +
                 playerStats[1].getStats().getNeutralMinionsKilled()));
-        sum2cs.setText("CS: " + String.valueOf(playerStats[2].getStats().getTotalMinionsKilled()+
+        sum2cs.setText("CS: " + (playerStats[2].getStats().getTotalMinionsKilled() +
                 playerStats[2].getStats().getNeutralMinionsKilled()));
-        sum3cs.setText("CS: " + String.valueOf(playerStats[3].getStats().getTotalMinionsKilled()+
+        sum3cs.setText("CS: " + (playerStats[3].getStats().getTotalMinionsKilled() +
                 playerStats[3].getStats().getNeutralMinionsKilled()));
-        sum4cs.setText("CS: " + String.valueOf(playerStats[4].getStats().getTotalMinionsKilled()+
+        sum4cs.setText("CS: " + (playerStats[4].getStats().getTotalMinionsKilled() +
                 playerStats[4].getStats().getNeutralMinionsKilled()));
-        sum5cs.setText("CS: " + String.valueOf(playerStats[5].getStats().getTotalMinionsKilled()+
+        sum5cs.setText("CS: " + (playerStats[5].getStats().getTotalMinionsKilled() +
                 playerStats[5].getStats().getNeutralMinionsKilled()));
-        sum6cs.setText("CS: " + String.valueOf(playerStats[6].getStats().getTotalMinionsKilled()+
+        sum6cs.setText("CS: " + (playerStats[6].getStats().getTotalMinionsKilled() +
                 playerStats[6].getStats().getNeutralMinionsKilled()));
-        sum7cs.setText("CS: " + String.valueOf(playerStats[7].getStats().getTotalMinionsKilled()+
+        sum7cs.setText("CS: " + (playerStats[7].getStats().getTotalMinionsKilled() +
                 playerStats[7].getStats().getNeutralMinionsKilled()));
-        sum8cs.setText("CS: " + String.valueOf(playerStats[8].getStats().getTotalMinionsKilled()+
+        sum8cs.setText("CS: " + (playerStats[8].getStats().getTotalMinionsKilled() +
                 playerStats[8].getStats().getNeutralMinionsKilled()));
-        sum9cs.setText("CS: " + String.valueOf(playerStats[9].getStats().getTotalMinionsKilled()+
+        sum9cs.setText("CS: " + (playerStats[9].getStats().getTotalMinionsKilled() +
                 playerStats[9].getStats().getNeutralMinionsKilled()));
 
     }

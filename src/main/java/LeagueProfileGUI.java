@@ -1,15 +1,10 @@
 import Classes.*;
-import kong.unirest.Unirest;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
-import java.net.URL;
 
 public class LeagueProfileGUI extends JFrame {
     private JLabel sumRankImg;
@@ -75,8 +70,7 @@ public class LeagueProfileGUI extends JFrame {
         // Update Matchlist with recent match history
         listMatchModel = new DefaultListModel<>();
         for (MatchHistory.Match match : matches){
-            String listMatchDetails = String.format("%-15s %-15s %-25s", String.valueOf
-                    (match.getGameId()), APIRequests.getChampionNameById(match.getChampion()), APIRequests.getGameType(match.getQueue()));
+            String listMatchDetails = String.format("%-15s %-15s %-25s", match.getGameId(), APIRequests.getChampionNameById(match.getChampion()), APIRequests.getGameType(match.getQueue()));
             listMatchModel.addElement(listMatchDetails);
         }
 
@@ -125,20 +119,12 @@ public class LeagueProfileGUI extends JFrame {
         JMenuItem matchDetails = new JMenuItem("Match Details");
         rightClickMenu.add(matchDetails);
 
-        newSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                LeagueProfileSearchGUI gui = new LeagueProfileSearchGUI();
-                setVisible(false);
-            }
+        newSearch.addActionListener(actionEvent -> {
+            LeagueProfileSearchGUI gui = new LeagueProfileSearchGUI();
+            setVisible(false);
         });
 
-        matchDetails.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                getMatchDetails();
-            }
-        });
+        matchDetails.addActionListener(e -> getMatchDetails());
 
         matchHistory.setComponentPopupMenu(rightClickMenu);
 

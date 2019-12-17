@@ -19,6 +19,7 @@ In order to run this project, you'll need an API key from Riot.
 [You can create an account here](https://developer.riotgames.com/)
 
 Save your API Key as an environment variable called "RIOT_API_KEY" and you should be all set.
+Riots Dev Keys expire after 24 hours, so you'll need to update often.
 
 Search for player accounts and make sure you select the proper region for the account. Some notable accounts of 
 pro players that you can search:
@@ -28,6 +29,8 @@ pro players that you can search:
   * AKA Faker, pro player for SKT T1
 * Spencer Reid (Europe West) 
   * AKA Rekkles, pro player for Fnatic
+* Purpleiswin (North America)
+  * (My account)
 
 
 

@@ -1,13 +1,10 @@
 import Classes.*;
 import kong.unirest.Unirest;
-import kong.unirest.UnirestParsingException;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLOutput;
 
 public class APIRequests {
 
