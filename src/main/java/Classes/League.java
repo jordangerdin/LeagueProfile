@@ -2,8 +2,14 @@ package Classes;
 
 public class League {
     // Class for player rank
+
     String rank;
     String tier;
+
+    public League(String rank, String tier) {
+        this.rank = rank;
+        this.tier = tier;
+    }
 
     public String getRank() {
         return rank;

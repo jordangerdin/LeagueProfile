@@ -35,3 +35,5 @@ pro players that you can search:
 * Validation issues with older accounts
   * Accounts that haven't been active in a few years won't have Mastery scores or ranked info, and the GUI doesn't 
   account for this yet
+* If the account has no ranked data, index out of bounds error happens. Currently checks player is ranked before 
+displaying data, but modifying so that profile just displays "Unranked" would be better.

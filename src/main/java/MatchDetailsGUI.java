@@ -2,6 +2,11 @@ import Classes.MatchStats;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MatchDetailsGUI extends JFrame {
     private JPanel matchPanel;
@@ -27,10 +32,22 @@ public class MatchDetailsGUI extends JFrame {
     private JLabel sum9kda;
     private JLabel teamBlue;
     private JLabel teamRed;
+    private JLabel sum0cs;
+    private JLabel sum1cs;
+    private JLabel sum2cs;
+    private JLabel sum3cs;
+    private JLabel sum4cs;
+    private JLabel sum5cs;
+    private JLabel sum6cs;
+    private JLabel sum7cs;
+    private JLabel sum8cs;
+    private JLabel sum9cs;
+    private JLabel gameMode;
+    private JLabel duration;
 
     public MatchDetailsGUI(MatchStats matchStats) {
         setContentPane(matchPanel);
-        setPreferredSize(new Dimension(500, 350));
+        setPreferredSize(new Dimension(500, 400));
         pack();
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         setVisible(true);
@@ -38,6 +55,10 @@ public class MatchDetailsGUI extends JFrame {
         MatchStats.Teams[] teams = matchStats.getTeams();
         MatchStats.ParticipantIdentities[] players = matchStats.getParticipantIdentities();
         MatchStats.Participants[] playerStats = matchStats.getParticipants();
+
+        // Header information such as gametype, duration
+        gameMode.setText(APIRequests.getGameType(matchStats.getQueueId()));
+        duration.setText(String.valueOf((new SimpleDateFormat("mm:ss")).format(new Date(matchStats.getGameDuration()*1000))));
 
         // Flair for winning team
         if(teams[0].getWin().equals("Win")){
@@ -93,6 +114,27 @@ public class MatchDetailsGUI extends JFrame {
         sum8kda.setText(String.valueOf(playerStats[8].getStats().getKills() + "/" + playerStats[8].getStats().getDeaths() + "/" + playerStats[8].getStats().getAssists()));
         sum9kda.setText(String.valueOf(playerStats[9].getStats().getKills() + "/" + playerStats[9].getStats().getDeaths() + "/" + playerStats[9].getStats().getAssists()));
 
+        // Set CS scores
+        sum0cs.setText("CS: " + String.valueOf(playerStats[0].getStats().getTotalMinionsKilled() +
+                playerStats[0].getStats().getNeutralMinionsKilled()));
+        sum1cs.setText("CS: " + String.valueOf(playerStats[1].getStats().getTotalMinionsKilled() +
+                playerStats[1].getStats().getNeutralMinionsKilled()));
+        sum2cs.setText("CS: " + String.valueOf(playerStats[2].getStats().getTotalMinionsKilled()+
+                playerStats[2].getStats().getNeutralMinionsKilled()));
+        sum3cs.setText("CS: " + String.valueOf(playerStats[3].getStats().getTotalMinionsKilled()+
+                playerStats[3].getStats().getNeutralMinionsKilled()));
+        sum4cs.setText("CS: " + String.valueOf(playerStats[4].getStats().getTotalMinionsKilled()+
+                playerStats[4].getStats().getNeutralMinionsKilled()));
+        sum5cs.setText("CS: " + String.valueOf(playerStats[5].getStats().getTotalMinionsKilled()+
+                playerStats[5].getStats().getNeutralMinionsKilled()));
+        sum6cs.setText("CS: " + String.valueOf(playerStats[6].getStats().getTotalMinionsKilled()+
+                playerStats[6].getStats().getNeutralMinionsKilled()));
+        sum7cs.setText("CS: " + String.valueOf(playerStats[7].getStats().getTotalMinionsKilled()+
+                playerStats[7].getStats().getNeutralMinionsKilled()));
+        sum8cs.setText("CS: " + String.valueOf(playerStats[8].getStats().getTotalMinionsKilled()+
+                playerStats[8].getStats().getNeutralMinionsKilled()));
+        sum9cs.setText("CS: " + String.valueOf(playerStats[9].getStats().getTotalMinionsKilled()+
+                playerStats[9].getStats().getNeutralMinionsKilled()));
 
     }
 

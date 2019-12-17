@@ -29,6 +29,11 @@ public class LeagueProfileSearchGUI extends JFrame{
 
         configureRegionComboBox();
 
+        if (LeagueProfileAPI.RIOT_API_KEY.equals("")){
+            JOptionPane.showMessageDialog(null, "No API key present", "Empty API Key", JOptionPane.INFORMATION_MESSAGE);
+            searchButton.setEnabled(false);
+        }
+
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,6 +58,11 @@ public class LeagueProfileSearchGUI extends JFrame{
 
                 // Get player rank
                 League[] playerRank = APIRequests.getPlayerRank(regionCode, player.getId());
+                if (playerRank.length == 0) {
+                    // Checks that player is ranked
+                    JOptionPane.showMessageDialog(null, "No ranked information available for this account", "No Ranked Data", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
 
                 // Get player mastery scores
                 Mastery[] mastery = APIRequests.getPlayerMasteries(regionCode, player.getId());
